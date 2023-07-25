@@ -32,7 +32,7 @@
     "extends": "react-app"
   },
   "scripts": {
-    "start": "rimraf ./build && react-scripts start",
+    "start": "rimraf ./build && react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "cross-env CI=true react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit-reporter",
     "eject": "react-scripts eject",
