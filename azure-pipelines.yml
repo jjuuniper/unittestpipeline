@@ -59,7 +59,7 @@ stages:
       condition: succeededOrFailed()
   
   - job: Publish_Tests
-    dependsOn: Test
+    dependsOn: Unit_Tests
     steps:
     - task: PublishTestResults@2
       inputs:
