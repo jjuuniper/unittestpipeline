@@ -45,7 +45,7 @@ stages:
           **\MyApp.*test*.dll
           !**\*TestAdapter.dll
           !**\obj\**
-        searchFolder: '$(System.DefaultWorkingDirectory)'
+        searchFolder: '$(Common.TestResultsDirectory)'
         runTestsInIsolation: true
         codeCoverageEnabled: true
         platform: '$(buildPlatform)'
