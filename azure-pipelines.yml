@@ -37,6 +37,7 @@ stages:
   jobs:
   - job: Unit_Tests
     steps:
+    - checkout: none
     - task: VSTest@2
       displayName: "Server Unit Tests"
       inputs:
