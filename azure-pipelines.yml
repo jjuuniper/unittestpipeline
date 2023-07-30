@@ -58,7 +58,8 @@ stages:
         customCommand: 'run test'
       condition: succeededOrFailed()
   
-  - job: Publish_Test
+  - job: Publish_Tests
+    dependsOn: Test
     steps:
     - task: PublishTestResults@2
       inputs:
