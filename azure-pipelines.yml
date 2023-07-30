@@ -62,6 +62,7 @@ stages:
   - job: Publish_Tests
     dependsOn: Unit_Tests
     steps:
+    - checkout: none
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: 'JUnit'
