@@ -69,3 +69,4 @@ stages:
         testResultsFiles: '**/test-report.xml'
         failTaskOnFailedTests: true
       condition: succeededOrFailed()
+      
