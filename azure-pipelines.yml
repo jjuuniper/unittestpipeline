@@ -14,7 +14,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  uiBuild: 'obj'
+  uiBuild: 'MyApp/obj'
 
 stages:
 - stage: Build
