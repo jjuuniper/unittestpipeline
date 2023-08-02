@@ -14,6 +14,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  uiBuild: 'obj'
 
 stages:
 - stage: Build
@@ -69,4 +70,22 @@ stages:
         testResultsFiles: '**/test-report.xml'
         failTaskOnFailedTests: true
       condition: succeededOrFailed()
-      
+
+- stage: Publish
+  displayName: Publish artifacts
+  jobs: 
+  - job: Archive_and_Publish
+    steps:
+      - checkout: none
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '$(uiBuild)'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+          replaceExistingArchive: true
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
