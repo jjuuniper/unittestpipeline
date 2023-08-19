@@ -17,35 +17,31 @@ terraform {
   backend "azurerm" {
     resource_group_name = "rg_tf_state"
     storage_account_name = "satfstatejuuniper"
-    container_name = "tfdata"
+    container_name = "ut-tfdata"
     key = "terraform.tfstate"
   }
 }
 
-resource "azurerm_resource_group" "tf_rg_mywebapp" {
-  name = var.iac_resource_group
+resource "azurerm_resource_group" "tf_rg_reactapp" {
+  name = var.az_rg
   location = "eastus"
 }
 
-resource "azurerm_service_plan" "tf_service_plan" {
- name                = "mywebapp_sp"
+resource "azurerm_service_plan" "tf_sp_reactapp" {
+ name                = var.az_sp
  sku_name            = "B1"
  location            = "eastus"
- resource_group_name = azurerm_resource_group.tf_rg_mywebapp.name
+ resource_group_name = azurerm_resource_group.tf_rg_reactapp.name
  os_type             = "Linux"
 }
 
-resource "azurerm_linux_web_app" "tf_mywebapp_app_service" {
-  name                = var.iac_linux_web_app
-  location            = azurerm_resource_group.tf_rg_mywebapp.location
-  resource_group_name = azurerm_resource_group.tf_rg_mywebapp.name
-  service_plan_id     = azurerm_service_plan.tf_service_plan.id
+resource "azurerm_linux_web_app" "tf_appservice_reactapp" {
+  name                = var.az_reactapp
+  location            = azurerm_resource_group.tf_rg_reactapp.location
+  resource_group_name = azurerm_resource_group.tf_rg_reactapp.name
+  service_plan_id     = azurerm_service_plan.tf_sp_reactapp.id
 
   site_config {
-    always_on = false
-    application_stack {
-      docker_image = var.iac_docker_image
-	    docker_image_tag = var.image_build
-    }
+    
   }
 }

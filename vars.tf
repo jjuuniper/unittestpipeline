@@ -1,17 +1,13 @@
-variable "image_build" {
+variable "az_rg" {
   type = string
-  description = "latest build version"
+  default = "rg_unittest_reactapp"
 }
 
-variable "iac_resource_group" {
+variable "az_reactapp" {
+  default = "juuniper-unittestapp"
+}
+
+variable "az_sp" {
   type = string
-  default = "rg_juuniper_webapp"
-}
-
-variable "iac_linux_web_app" {
-  default = "juunipertesttfwebapp"
-}
-
-variable "iac_docker_image" {
-  default = "juuniper/mywebapp"
+  default = "sp_unittest_reactapp" 
 }
