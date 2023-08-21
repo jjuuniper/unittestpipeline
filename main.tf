@@ -32,10 +32,10 @@ resource "azurerm_service_plan" "tf_sp_reactapp" {
  sku_name            = "B1"
  location            = "eastus"
  resource_group_name = azurerm_resource_group.tf_rg_reactapp.name
- os_type             = "Linux"
+ os_type             = "Windows"
 }
 
-resource "azurerm_linux_web_app" "tf_appservice_reactapp" {
+resource "azurerm_windows_web_app" "tf_appservice_reactapp" {
   name                = var.az_reactapp
   location            = azurerm_resource_group.tf_rg_reactapp.location
   resource_group_name = azurerm_resource_group.tf_rg_reactapp.name
